@@ -16,6 +16,12 @@ function handleAddNote() {
   setTitle('')
   setBody('')
 }
+
+function handleDeleteNote(id) {
+  setNotes(notes.filter((note) => note.id !== id))
+}
+
+
 return (
     <div>
       <h1>My Notes App</h1>
@@ -39,6 +45,7 @@ return (
             <div key={note.id} style={{border: '1px solid black', margin: '10px', padding: '10px'}}>
                 <h2>{note.title}</h2>
                 <p>{note.body}</p>
+                <button onClick={() => handleDeleteNote(note.id)}>Delete</button>
             </div>  
         ))}
     </div>
