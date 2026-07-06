@@ -9,6 +9,7 @@ function App() {
 
 const[title,setTitle]=useState('') 
 const[body,setBody]=useState('') 
+const[editingId, setEditingId]=useState(null)
 
 function handleAddNote() {
   const newNote = { id: Date.now(), title: title, body: body }
@@ -21,6 +22,20 @@ function handleDeleteNote(id) {
   setNotes(notes.filter((note) => note.id !== id))
 }
 
+function handleEditNote(note){
+  setEditingId(note.id)
+  setTitle(note.title)
+  setBody(note.body)
+}
+
+function handleUpdateNote(){
+   setNotes(notes.map((note) =>
+    note.id === editingId ? { ...note, title: title, body: body } : note
+  ))
+  setEditingId(null)
+  setTitle('')
+  setBody('')
+}
 
 return (
     <div>
@@ -38,13 +53,16 @@ return (
        value={body}
        onChange={(e) => setBody(e.target.value)}></input>
 
-      <button onClick={handleAddNote}>Add Note</button>
-      <p>Current title: {title}</p>
+      <button onClick={editingId ? handleUpdateNote : handleAddNote}>
+           {editingId ? 'Update Note' : 'Add Note'}
+      </button>
+
     <div>
         {notes.map((note) =>(
             <div key={note.id} style={{border: '1px solid black', margin: '10px', padding: '10px'}}>
                 <h2>{note.title}</h2>
                 <p>{note.body}</p>
+                <button onClick={() => handleEditNote(note)}>Edit</button>
                 <button onClick={() => handleDeleteNote(note.id)}>Delete</button>
             </div>  
         ))}
