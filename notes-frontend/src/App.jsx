@@ -19,7 +19,8 @@ function App() {
       alert("Complete the fields")
       return
     }
-    const newNote = { id: Date.now(), title: title, body: body }
+    // const newNote = { id: Date.now(), title: title, body: body }
+    const newNote = { id: Date.now(), title: title, body: body, createdAt: new Date().toLocaleString() }
     setNotes([...notes, newNote])
     setTitle('')
     setBody('')
