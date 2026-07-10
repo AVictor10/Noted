@@ -1,23 +1,23 @@
 function NoteForm({ title, setTitle, body, setBody, editingId, onAdd, onUpdate }) {
   return (
-    <div className="flex flex-col gap-3 bg-white border border-amber-200 rounded-lg p-4 mb-4 shadow-sm">
+    <div className="flex flex-col gap-3 bg-[var(--tan)] border border-[var(--accent)]/30 rounded-xl p-5 mb-6 shadow-sm max-w-md">
       <input
         type="text"
         placeholder="Title"
         value={title}
         onChange={(e) => setTitle(e.target.value)}
-        className="border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-amber-300"
+        className="border border-[var(--accent)]/40 rounded-md px-3 py-2 bg-[var(--cream)] text-[var(--ink)] placeholder-[var(--ink)]/40 focus:outline-none focus:ring-2 focus:ring-[var(--accent)]"
       />
       <input
         type="text"
         placeholder="Body"
         value={body}
         onChange={(e) => setBody(e.target.value)}
-        className="border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-amber-300"
+        className="border border-[var(--accent)]/40 rounded-md px-3 py-2 bg-[var(--cream)] text-[var(--ink)] placeholder-[var(--ink)]/40 focus:outline-none focus:ring-2 focus:ring-[var(--accent)]"
       />
       <button
         onClick={editingId ? onUpdate : onAdd}
-        className="bg-amber-500 text-white px-4 py-2 rounded-md hover:bg-amber-600 transition-colors duration-200"
+        className="bg-[var(--accent)] text-white px-4 py-2 rounded-md hover:opacity-90 transition-opacity duration-200 font-medium"
       >
         {editingId ? 'Update Note' : 'Add Note'}
       </button>
@@ -26,6 +26,36 @@ function NoteForm({ title, setTitle, body, setBody, editingId, onAdd, onUpdate }
 }
 
 export default NoteForm
+
+
+// function NoteForm({ title, setTitle, body, setBody, editingId, onAdd, onUpdate }) {
+//   return (
+//     <div className="flex flex-col gap-3 bg-white border border-amber-200 rounded-lg p-4 mb-4 shadow-sm">
+//       <input
+//         type="text"
+//         placeholder="Title"
+//         value={title}
+//         onChange={(e) => setTitle(e.target.value)}
+//         className="border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-amber-300"
+//       />
+//       <input
+//         type="text"
+//         placeholder="Body"
+//         value={body}
+//         onChange={(e) => setBody(e.target.value)}
+//         className="border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-amber-300"
+//       />
+//       <button
+//         onClick={editingId ? onUpdate : onAdd}
+//         className="bg-amber-500 text-white px-4 py-2 rounded-md hover:bg-amber-600 transition-colors duration-200"
+//       >
+//         {editingId ? 'Update Note' : 'Add Note'}
+//       </button>
+//     </div>
+//   )
+// }
+
+// export default NoteForm
 
 
 // function NoteForm({ title, setTitle, body, setBody, editingId, onAdd, onUpdate }) {

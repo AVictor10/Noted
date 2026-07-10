@@ -1,1 +1,15 @@
 @import "tailwindcss";
+
+@import "tailwindcss";
+
+:root {
+  --cream: #FAF3E8     /* lightest - page background */
+  --tan: #FAEDCD;        /* card background / borders */
+  --accent: #D4A373;     /* buttons, highlights */
+  --ink: #4A3728;        /* dark warm brown - text (derived for contrast) */
+}
+
+body {
+  font-family: var(--font-sans);
+  transition: background-color 0.3s ease;
+}
