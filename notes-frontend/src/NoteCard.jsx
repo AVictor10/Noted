@@ -1,7 +1,23 @@
-function NoteCard({ note, onEdit, onDelete }) {
+import { Pin } from 'lucide-react'
+
+
+function NoteCard({ note, onEdit, onDelete, onTogglePin }) {
   return (
-    <div className="border border-[var(--accent)]/30 bg-[var(--tan)] rounded-xl p-5 shadow-sm hover:shadow-md transition-shadow duration-300">
-      <h2 className="text-lg font-semibold text-[var(--ink)] mb-1 font-[family-name:var(--font-serif)]">{note.title}</h2>
+    <div className="relative border border-[var(--accent)]/30 bg-[var(--tan)] rounded-xl p-5 shadow-sm hover:shadow-md transition-shadow duration-300">
+      <button
+        onClick={() => onTogglePin(note.id)}
+        className="absolute top-3 right-3 hover:scale-110 transition-transform duration-200"
+      >
+        <Pin
+           size={18}
+           fill={note.pinned ? '#D4A373' : 'none'}
+           color={note.pinned ? '#D4A373' : '#8a8578'}
+           strokeWidth={note.pinned ? 2 : 1.5}
+        />
+      </button>
+      <h2 className="text-lg font-semibold text-[var(--ink)] mb-1 font-[family-name:var(--font-serif)]">
+        {note.title}</h2>
+        
       <p className="text-[var(--ink)]/80 mb-2">{note.body}</p>
       <p className="text-xs text-[var(--ink)]/50 mb-4">{note.createdAt}</p>
       <div className="flex gap-2">
@@ -23,7 +39,6 @@ function NoteCard({ note, onEdit, onDelete }) {
 }
 
 export default NoteCard
-
 
 
 // function NoteCard({ note, onEdit, onDelete }) {

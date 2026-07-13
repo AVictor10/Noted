@@ -13,6 +13,12 @@ function App() {
   const [body, setBody] = useState('')
   const [editingId, setEditingId] = useState(null)
 
+  const togglePin = (id) => {
+  setNotes(notes.map(note =>
+    note.id === id ? { ...note, pinned: !note.pinned } : note
+  ));
+};
+
   function handleAddNote() {
     if (title.trim() === '' || body.trim() === '') {
       alert("Complete the fields")
@@ -46,6 +52,8 @@ function App() {
     setTitle('')
     setBody('')
   }
+
+  
 
 return (
   <div className="min-h-screen bg-[var(--cream)]">
@@ -94,6 +102,7 @@ return (
           notes={notes}
           onEdit={handleEditNote}
           onDelete={handleDeleteNote}
+          onTogglePin={togglePin}
         />
       )}
     </section>

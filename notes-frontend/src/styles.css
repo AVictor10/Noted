@@ -1,7 +1,5 @@
 @import "tailwindcss";
 
-@import "tailwindcss";
-
 :root {
   --cream: #FAF3E8     /* lightest - page background */
   --tan: #FAEDCD;        /* card background / borders */
@@ -13,3 +11,4 @@ body {
   font-family: var(--font-sans);
   transition: background-color 0.3s ease;
 }
+
