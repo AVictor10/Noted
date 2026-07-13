@@ -19,15 +19,23 @@ function App() {
   ));
 };
 
+const sortedNotes = [...notes].sort((a, b) => {
+  return (b.pinned ? 1 : 0) - (a.pinned ? 1 : 0);
+});
+
+const [tags, setTags] = useState([])
+const [tagInput, setTagInput] = useState('')
+
   function handleAddNote() {
     if (title.trim() === '' || body.trim() === '') {
       alert("Complete the fields")
       return
     }
-    const newNote = { id: Date.now(), title: title, body: body, createdAt: new Date().toLocaleString() }
+    const newNote = { id: Date.now(), title: title, body: body, createdAt: new Date().toLocaleString(), tags:tags }
     setNotes([...notes, newNote])
     setTitle('')
     setBody('')
+    setTags([])
   }
 
   function handleDeleteNote(id) {
@@ -39,6 +47,16 @@ function App() {
     setTitle(note.title)
     setBody(note.body)
   }
+
+  function handleAddTag() {
+  if (tagInput.trim() === '') return
+  setTags([...tags, tagInput.trim()])
+  setTagInput('')
+}
+
+function handleRemoveTag(tagToRemove) {
+  setTags(tags.filter((tag) => tag !== tagToRemove))
+}
 
   function handleUpdateNote() {
     if (title.trim() === '' || body.trim() === '') {
@@ -85,6 +103,11 @@ return (
         editingId={editingId}
         onAdd={handleAddNote}
         onUpdate={handleUpdateNote}
+        tagInput={tagInput}
+        setTagInput={setTagInput}
+        tags={tags}
+        onAddTag={handleAddTag}
+        onRemoveTag={handleRemoveTag}
       />
 
       <div className="mt-4 text-center">
@@ -99,7 +122,7 @@ return (
         <p className="text-[var(--ink)]/50 text-center mt-10">No notes to display</p>
       ) : (
         <NoteList
-          notes={notes}
+          notes={sortedNotes}
           onEdit={handleEditNote}
           onDelete={handleDeleteNote}
           onTogglePin={togglePin}

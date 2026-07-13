@@ -18,6 +18,19 @@ function NoteCard({ note, onEdit, onDelete, onTogglePin }) {
       <h2 className="text-lg font-semibold text-[var(--ink)] mb-1 font-[family-name:var(--font-serif)]">
         {note.title}</h2>
         
+       {note.tags && note.tags.length > 0 && (
+        <div className="flex flex-wrap gap-1 mb-3">
+          {note.tags.map((tag) => (
+            <span
+              key={tag}
+              className="text-xs bg-[var(--accent)]/20 text-[var(--ink)] px-2 py-0.5 rounded-full"
+            >
+              {tag}
+            </span>
+          ))}
+        </div>
+      )}
+        
       <p className="text-[var(--ink)]/80 mb-2">{note.body}</p>
       <p className="text-xs text-[var(--ink)]/50 mb-4">{note.createdAt}</p>
       <div className="flex gap-2">
