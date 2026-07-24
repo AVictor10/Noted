@@ -46,6 +46,7 @@ const [tagInput, setTagInput] = useState('')
     setEditingId(note.id)
     setTitle(note.title)
     setBody(note.body)
+    setTags(note.tags || [])  
   }
 
   function handleAddTag() {
@@ -58,17 +59,20 @@ function handleRemoveTag(tagToRemove) {
   setTags(tags.filter((tag) => tag !== tagToRemove))
 }
 
-  function handleUpdateNote() {
-    if (title.trim() === '' || body.trim() === '') {
+function handleUpdateNote() {
+   if (title.trim() === '' || body.trim() === '') {
       alert("Complete the fields")
       return
     }
     setNotes(notes.map((note) =>
-      note.id === editingId ? { ...note, title: title, body: body } : note
+      note.id === editingId 
+        ? { ...note, title: title, body: body, tags: tags, updatedAt: new Date().toLocaleString() } 
+        : note
     ))
     setEditingId(null)
     setTitle('')
     setBody('')
+    setTags([])
   }
 
   
@@ -108,7 +112,7 @@ return (
         tags={tags}
         onAddTag={handleAddTag}
         onRemoveTag={handleRemoveTag}
-      />
+      /> 
 
       <div className="mt-4 text-center">
         <span className="inline-block bg-[var(--accent)]/20 text-[var(--ink)] text-sm font-medium px-4 py-1.5 rounded-full">

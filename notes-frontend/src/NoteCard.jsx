@@ -32,7 +32,7 @@ function NoteCard({ note, onEdit, onDelete, onTogglePin }) {
       )}
         
       <p className="text-[var(--ink)]/80 mb-2">{note.body}</p>
-      <p className="text-xs text-[var(--ink)]/50 mb-4">{note.createdAt}</p>
+      <p className="text-xs text-[var(--ink)]/50 mb-4">{note.updatedAt ? `Updated: ${note.updatedAt}` : `Created: ${note.createdAt}`}</p>
       <div className="flex gap-2">
         <button
           onClick={() => onEdit(note)}
